@@ -19,9 +19,9 @@ export default class AddNote extends Component {
     };
   }
 
-  onChangeTitle(e) {
+  onChangeTopic(e) {
     this.setState({
-      title: e.target.value
+      topic: e.target.value
     });
   }
 
@@ -31,17 +31,17 @@ export default class AddNote extends Component {
     });
   }
 
-  saveTutorial() {
+  saveNote() {
     var data = {
-      title: this.state.topic,
+      topic: this.state.topic,
       description: this.state.description
     };
 
-    TutorialDataService.create(data)
+    NoteDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          title: response.data.title,
+          topic: response.data.topic,
           description: response.data.description,
           published: response.data.published,
 
@@ -66,6 +66,49 @@ export default class AddNote extends Component {
   }
 
   render() {
-    // ...
+    return (
+      <div className="submit-form">
+        {this.state.submitted ? (
+          <div>
+            <h4>You submitted successfully!</h4>
+            <button className="btn btn-success" onClick={this.newNote}>
+              Add
+            </button>
+          </div>
+        ) : (
+          <div>
+            <div className="form-group">
+              <label htmlFor="topic">Topic</label>
+              <input
+                type="text"
+                className="form-control"
+                id="topic"
+                required
+                value={this.state.topic}
+                onChange={this.onChangeTopic}
+                name="topic"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                required
+                value={this.state.description}
+                onChange={this.onChangeDescription}
+                name="description"
+              />
+            </div>
+
+            <button onClick={this.saveNote} className="btn btn-success">
+              Submit
+            </button>
+          </div>
+        )}
+      </div>
+    );
   }
 }

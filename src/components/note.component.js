@@ -114,11 +114,11 @@ export default class Note extends Component {
   }
 
   render() {
-    const { currentTutorial } = this.state;
+    const { currentNote } = this.state;
 
     return (
       <div>
-        {currentTutorial ? (
+        {currentNote ? (
           <div className="edit-form">
             <h4>Note</h4>
             <form>
@@ -147,7 +147,7 @@ export default class Note extends Component {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentNote.published ? "Published" : "Pending"}
               </div>
             </form>
 

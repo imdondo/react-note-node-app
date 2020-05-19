@@ -25,7 +25,7 @@ class NoteDataService {
     return http.delete(`/notes`);
   }
 
-  findByTitle(title) {
+  findByDescription(description) {
     return http.get(`/notes?description=${description}`);
   }
 }

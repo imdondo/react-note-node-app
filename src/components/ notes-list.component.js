@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/note.service";
+import NoteDataService from "../services/note.service";
 import { Link } from "react-router-dom";
 
 export default class NotesList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchTopic = this.onChangeSearchTopic.bind(this);
+    this.onChangeSearchDescription = this.onChangeSearchDescription.bind(this);
     this.retrieveNotes = this.retrieveNotes.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveNote = this.setActiveNote.bind(this);
@@ -53,7 +53,7 @@ export default class NotesList extends Component {
     });
   }
 
-  setActiveTutorial(note, index) {
+  setActiveNote(note, index) {
     this.setState({
       currentNote: note,
       currentIndex: index
@@ -94,8 +94,8 @@ export default class NotesList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by title"
-              value={searchTitle}
+              placeholder="Search by description"
+              value={searchDescription}
               onChange={this.onChangeSearchDescription}
             />
             <div className="input-group-append">
@@ -110,10 +110,10 @@ export default class NotesList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorials List</h4>
+          <h4>Note List</h4>
 
           <ul className="list-group">
-            {tutorials &&
+            {notes &&
               notes.map((note, index) => (
                 <li
                   className={
@@ -155,11 +155,11 @@ export default class NotesList extends Component {
                 <label>
                   <strong>Status:</strong>
                 </label>{" "}
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentNote.published ? "Published" : "Pending"}
               </div>
 
               <Link
-                to={"/tutorials/" + currentNote.id}
+                to={"/notes/" + currentNote.id}
                 className="badge badge-warning"
               >
                 Edit
