@@ -36,7 +36,7 @@ export default class NotesList extends Component {
     NoteDataService.getAll()
       .then(response => {
         this.setState({
-          tutorials: response.data
+          notes: response.data
         });
         console.log(response.data);
       })
