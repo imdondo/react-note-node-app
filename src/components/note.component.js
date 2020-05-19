@@ -23,7 +23,7 @@ export default class Note extends Component {
   }
 
   componentDidMount() {
-    this.getTutorial(this.props.match.params.id);
+    this.getNote(this.props.match.params.id);
   }
 
   onChangeTopic(e) {
